@@ -1,5 +1,5 @@
 //Array de palavras
-let crossWords = ["LASER","NEON","SABRE","PORTAL","ROBÔ","TECH","FUTURO","TECNOLOGIA","FICÇÃO","ESPAÇO","ALIEN","FOGUETE","PROPULSOR","ASTRO","MATRIX","MÁQUINA","TEMPO","AMANHÃ","SCIFI","DESTINO"]
+let crossWords = ["LASER","NEON","SABRE","PORTAL","ROBÔ","TECH","FUTURO","ORIGEM","FICÇÃO","ESPAÇO","ALIEN","FOGUETE","PROPULSOR","ASTRO","MATRIX","MÁQUINA","TEMPO","AMANHÃ","SCIFI","DESTINO"]
 //Array que receberá as palavras
 const randomWords = []
 //Função para inserir as string na array
@@ -45,38 +45,41 @@ let x = []     //  Criando array vazia para receber as palavras
   }                                
   }
 
-console.table(x)
+
 
 //inserindo primeira palavra
 
-let linhaPalavraUm = Math.random() * (10 - 1) + 1                  
-let colunaPalavraUm = Math.random() * (10 - 1) + 1
+let linhaPalavraUm = Math.random() * (11 - 1) + 1                  
+let colunaPalavraUm = Math.random() * (10 - 0) + 1
+
 
 
 linhaPalavraUm = Math.trunc(linhaPalavraUm)
 colunaPalavraUm = (Math.trunc(colunaPalavraUm))
 
 do {
-  colunaPalavraUm = Math.random() * (10 - 1) + 1  //definindo coluna da palavra 1
+  colunaPalavraUm = Math.random() * (10 - 1) + 1  //definindo coluna da palavra 1 onde palavra se inicia
   colunaPalavraUm = (Math.trunc(colunaPalavraUm))  //tirando a virgula
 }
-while (colunaPalavraUm + randomWords[0].length > 10)  //se for maior que a linha, repete o sorteio da coluna
- 
-if (colunaPalavraUm + randomWords[0].length > 10){
+while (colunaPalavraUm + randomWords[0].length > 10) 
+
+
+if (colunaPalavraUm + randomWords[0].length > 10){   
   colunaPalavraUm = Math.random() * (10 - 1) + 1
 }
 colunaPalavraUm = (Math.trunc(colunaPalavraUm))
-
  
-for (let i = 0; i < randomWords[0].length; i++){
+
+for (let i = 0; i < randomWords[0].length; i++){  //inserindo as letras no array
   x[linhaPalavraUm][colunaPalavraUm+i] = randomWords[0][i]
 }
 
 
 //inserindo segunda palavra
 
-let linhaPalavraDois = Math.random() * (10 - 1) + 1
-let colunaPalavraDois = Math.random() * (10 - 1) + 1
+let linhaPalavraDois = Math.random() * (11 - 1) + 1
+let colunaPalavraDois = Math.random() * (10 - 0) + 1
+
 linhaPalavraDois = Math.trunc(linhaPalavraDois)
 colunaPalavraDois = Math.trunc(colunaPalavraDois)
 linhaPalavraDois = Math.trunc(linhaPalavraDois)
@@ -97,12 +100,14 @@ if (colunaPalavraDois + randomWords[1].length > 10){
 }
 for (let i = 0; i < randomWords[1].length; i++){
   x[linhaPalavraDois][colunaPalavraDois+i] = randomWords[1][i]
+  
 }
-
+ 
 //inserindo terceira palavra
 
-let linhaPalavraTres = Math.random() * (10 - 1) + 1
-let colunaPalavraTres = Math.random() * (10 - 1) + 1
+let linhaPalavraTres = Math.random() * (11 - 1) + 1
+let colunaPalavraTres = Math.random() * (10 - 0) + 1
+
 linhaPalavraTres = Math.trunc(linhaPalavraTres)
 colunaPalavraTres = Math.trunc(colunaPalavraTres)
 linhaPalavraTres = Math.trunc(linhaPalavraTres)
@@ -116,7 +121,7 @@ do {
   colunaPalavraTres = (Math.trunc(colunaPalavraTres))
 }
 while (colunaPalavraTres + randomWords[2].length > 10)
- 
+  
 if (colunaPalavraTres + randomWords[2].length > 10){
   colunaPalavraTres = Math.random() * (10 - 1) + 1
   colunaPalavraTres = Math.trunc(colunaPalavraTres)
@@ -124,6 +129,5 @@ if (colunaPalavraTres + randomWords[2].length > 10){
 for (let i = 0; i < randomWords[2].length; i++){
   x[linhaPalavraTres][colunaPalavraTres+i] = randomWords[2][i]
 }
-
 
 console.table(x)
