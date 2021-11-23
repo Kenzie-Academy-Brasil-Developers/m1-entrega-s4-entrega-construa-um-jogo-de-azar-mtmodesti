@@ -24,8 +24,6 @@ function randomLetters(n) {
   return random
 }
 
-
-
 //Função para gerar string aleatória
 function geraStringAleatoria(tamanho) {    
   var stringAleatoria = '';
@@ -59,12 +57,11 @@ linhaPalavraUm = Math.trunc(linhaPalavraUm)
 colunaPalavraUm = (Math.trunc(colunaPalavraUm))
 
 do {
-  colunaPalavraUm = Math.random() * (10 - 1) + 1
-  colunaPalavraUm = (Math.trunc(colunaPalavraUm))
+  colunaPalavraUm = Math.random() * (10 - 1) + 1  //definindo coluna da palavra 1
+  colunaPalavraUm = (Math.trunc(colunaPalavraUm))  //tirando a virgula
 }
-while (colunaPalavraUm + randomWords[0].length > 10)
-
-
+while (colunaPalavraUm + randomWords[0].length > 10)  //se for maior que a linha, repete o sorteio da coluna
+ 
 if (colunaPalavraUm + randomWords[0].length > 10){
   colunaPalavraUm = Math.random() * (10 - 1) + 1
 }
@@ -87,15 +84,16 @@ if (linhaPalavraDois === linhaPalavraUm){
   linhaPalavraDois = Math.random() * (10 - 1) + 1
 }
 linhaPalavraDois = Math.trunc(linhaPalavraDois)
+
 do {
   colunaPalavraDois = Math.random() * (10 - 1) + 1
   colunaPalavraDois = (Math.trunc(colunaPalavraDois))
 }
 while (colunaPalavraDois + randomWords[1].length > 10)
-
+ 
 if (colunaPalavraDois + randomWords[1].length > 10){
   colunaPalavraDois = Math.random() * (10 - 1) + 1
-  colunaPalavraDois = Math.trunc(colunaPalavraUm)
+  colunaPalavraDois = Math.trunc(colunaPalavraDois)
 }
 for (let i = 0; i < randomWords[1].length; i++){
   x[linhaPalavraDois][colunaPalavraDois+i] = randomWords[1][i]
@@ -112,15 +110,16 @@ if (linhaPalavraTres === linhaPalavraDois || linhaPalavraTres === linhaPalavraUm
   linhaPalavraTres = Math.random() * (10 - 1) + 1
 }
 linhaPalavraTres = Math.trunc(linhaPalavraTres)
+
 do {
   colunaPalavraTres = Math.random() * (10 - 1) + 1
   colunaPalavraTres = (Math.trunc(colunaPalavraTres))
 }
 while (colunaPalavraTres + randomWords[2].length > 10)
-
+ 
 if (colunaPalavraTres + randomWords[2].length > 10){
   colunaPalavraTres = Math.random() * (10 - 1) + 1
-  colunaPalavraTres = Math.trunc(colunaPalavraUm)
+  colunaPalavraTres = Math.trunc(colunaPalavraTres)
 }
 for (let i = 0; i < randomWords[2].length; i++){
   x[linhaPalavraTres][colunaPalavraTres+i] = randomWords[2][i]
