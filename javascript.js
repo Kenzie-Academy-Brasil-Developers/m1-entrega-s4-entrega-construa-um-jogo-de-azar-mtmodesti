@@ -1,16 +1,26 @@
+<<<<<<< HEAD
 //Array de palavras
 let crossWords = ["LASER","NEON","SABRE","PORTAL","ROBÔ","TECH","FUTURO","ORIGEM","FICÇÃO","ESPAÇO","ALIEN","FOGUETE","PROPULSOR","ASTRO","MATRIX","MÁQUINA","TEMPO","AMANHÃ","SCIFI","DESTINO"]
 //Array que receberá as palavras
 const randomWords = []
 //Função para inserir as string na array
+=======
+/*let crossWords = ["LASER","NEON","SABRE","PORTAL","ROBÔ","TECH","FUTURO","TECNOLOGIA","FICÇÃO","ESPAÇO","ALIEN","FOGUETE","PROPULSOR","ASTRO","MATRIX","MÁQUINA","TEMPO","AMANHÃ","SCIFI","DESTINO"]
+
+let randomWords = []
+>>>>>>> Omar
 function stringGenerator(){
 for (let i = 0; i < 3; i++){
   let x = Math.random() * (19 - 1) + 1
   randomWords[i] = crossWords[Math.round(x)]
 }
 return randomWords
+<<<<<<< HEAD
 }
 document.onload = stringGenerator()
+=======
+}*/
+>>>>>>> Omar
 
 //gerador de string - O parâmetro é o número de caracteres que será gerado
 function randomLetters(n) {
@@ -24,6 +34,7 @@ function randomLetters(n) {
   return random
 }
 
+<<<<<<< HEAD
 //Função para gerar string aleatória
 function geraStringAleatoria(tamanho) {    
   var stringAleatoria = '';
@@ -131,3 +142,16 @@ for (let i = 0; i < randomWords[2].length; i++){
 }
 
 console.table(x)
+=======
+
+const randomWords = []
+function stringGenerator(){
+  const crossWords = ["LASER","NEON","SABRE","PORTAL","ROBÔ","TECH","FUTURO","TECNOLOGIA","FICÇÃO","ESPAÇO","ALIEN","FOGUETE","PROPULSOR","ASTRO","MATRIX","MÁQUINA","TEMPO","AMANHÃ","SCIFI","DESTINO"]
+  for(let i = 0; i < 3; i++) {
+    let x = Math.random() * crossWords.length
+    let removed = crossWords.splice(Math.round(x), 1)
+    randomWords[i] = removed[0]
+  }
+return randomWords
+}
+>>>>>>> Omar
