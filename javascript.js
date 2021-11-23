@@ -116,7 +116,25 @@ if (colunaPalavraTres + randomWords[2].length > 10){
 for (let i = 0; i < randomWords[2].length; i++){
   x[linhaPalavraTres][colunaPalavraTres+i] = randomWords[2][i]
 }
+//COLOCAR LETRAS ALEATORIAS NOS ESPAÇOS VAZIOS
+  return preencher(x)
 }
+
+function preencher(arr){
+  let letras = randomLetters(100)
+  for(let linha = 1; linha <= 10; linha++) {
+    for(let coluna = 0; coluna < 10; coluna++){
+  let indiceLetra = Math.random() * (100 - 1) + 1
+    arr[linha][coluna] = letras[Math.floor(indiceLetra)]
+    }
+  }
+  return arr
+ //console.table(arr)
+}
+//EVENTOS DOM 
+const body = document.getElementById('body')
+
+body.addEventListener('click', choicedWord)
 
 function choicedWord(event){
   let escolhido = event.target
@@ -134,9 +152,31 @@ function choicedWord(event){
 
 
 function load(){
-  tabela = document.getElementById("tabela")
-  tabela.innerText = 
-
-
-
+  const tabela = document.getElementById("tabela")
+  const section = document.createElement('section')
+  body.appendChild(section)
+  addWords()
+  /*for(let i = 1; i <= 100; i++){
+    let x = 'tabela' + i
+    const tabela = document.createElement('div')
+    tabela.setAttribute('linha', i)
+    section.appendChild(tabela)
+    console.log(x)*/
+  //}
+  for(let linha = 1; linha <= 10; linha++){
+    for(let coluna = 0; coluna < 10; coluna++) {
+      const tabela = document.createElement('table')
+      tabela.setAttribute('linha', linha)
+      tabela.setAttribute('coluna', coluna)
+      section.appendChild(tabela)
+      console.log(coluna)
+      tabela.innerText = x[linha][coluna]
+    }
+  }
 }
+
+
+
+
+
+  
