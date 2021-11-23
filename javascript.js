@@ -34,8 +34,6 @@ let x = []     //  Criando array vazia para receber as palavras
   }                                
   }
 
-
-
 //inserindo primeira palavra
 function addWords(){
 let linhaPalavraUm = Math.random() * (11 - 1) + 1                  
@@ -118,4 +116,27 @@ if (colunaPalavraTres + randomWords[2].length > 10){
 for (let i = 0; i < randomWords[2].length; i++){
   x[linhaPalavraTres][colunaPalavraTres+i] = randomWords[2][i]
 }
+}
+
+function choicedWord(event){
+  let escolhido = event.target
+  for(let i = 1; i <= 3; i++){
+  let palavra = "palavra" + i    //se não der certo, tentar converte o I para string com o to string
+  if (escolhido.className === palavra){
+    let chance = document.getElementsByClassName(palavra)
+    for(let i = 0; i < chance.length; i++){
+      chance[i].className.add = "escolhido"
+    }
+  }
+}
+}
+
+
+
+function load(){
+  tabela = document.getElementById("tabela")
+  tabela.innerText = 
+
+
+
 }
