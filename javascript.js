@@ -37,7 +37,7 @@ let x = []     //  Criando array vazia para receber as palavras
 
 
 //inserindo primeira palavra
-
+function addWords(){
 let linhaPalavraUm = Math.random() * (11 - 1) + 1                  
 let colunaPalavraUm = Math.random() * (10 - 0) + 1
 
@@ -118,5 +118,4 @@ if (colunaPalavraTres + randomWords[2].length > 10){
 for (let i = 0; i < randomWords[2].length; i++){
   x[linhaPalavraTres][colunaPalavraTres+i] = randomWords[2][i]
 }
-
-console.table(x)
+}
