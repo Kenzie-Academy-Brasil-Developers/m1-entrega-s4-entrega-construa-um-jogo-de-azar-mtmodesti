@@ -1,0 +1,158 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-image: url(/img/galaxia2.jpeg);
+    max-width: 1200px;
+    
+}
+
+table {
+    margin-top: 6vw;
+    width: 500px;
+    height: 500px;
+    margin-left: 200px;
+}
+
+td {
+    border: 1px solid #ff8c00;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    color: #03e9f4;
+
+}
+
+td:hover {
+    background-color: #808080;
+    cursor: pointer;
+}
+
+.botao {
+
+    width: 200px;
+    height: 20px;
+
+    margin-left: 200px;
+    display: inline-block;
+
+    padding: 10px 20px;
+
+    color: #03e9f4;
+
+    font-size: 16px;
+
+    text-decoration: none;
+
+    text-transform: uppercase;
+
+    overflow: hidden;
+
+    transition: 0.2s;
+
+    margin-top: 40px;
+
+    letter-spacing: 4px
+    
+}
+
+
+.botao:hover {
+
+    background: #03e9f4;
+
+    color: #fff;
+
+    border-radius: 5px;
+
+    box-shadow: 0 0 5px #03e9f4,
+
+        0 0 25px #03e9f4,
+
+        0 0 50px #03e9f4,
+
+        0 0 100px #03e9f4;
+
+}
+
+.botao span {
+
+    position: absolute;
+
+    display: block;
+
+}
+
+
+/*span 1*/
+
+.botao span:nth-child(1) {
+
+    top: 0;
+
+    left: -100%;
+
+    width: 100%;
+
+    height: 2px;
+
+    background: linear-gradient(90deg, transparent, #03e9f4);
+}
+
+
+/*span 2*/
+
+.botao span:nth-child(2) {
+
+    top: -100%;
+
+    right: 0;
+
+    width: 2px;
+
+    height: 100%;
+
+    background: linear-gradient(180deg, transparent, #03e9f4);
+
+    animation-delay: .25s
+}
+
+
+/*span 3*/
+
+
+.botao span:nth-child(3) {
+
+    bottom: 0;
+
+    right: -100%;
+
+    width: 100%;
+
+    height: 2px;
+
+    background: linear-gradient(270deg, transparent, #03e9f4);
+
+
+    animation-delay: .5s
+}
+
+
+/*span 4*/
+
+
+.botao span:nth-child(4) {
+
+    bottom: -100%;
+
+    left: 0;
+
+    width: 2px;
+
+    height: 100%;
+
+    background: linear-gradient(360deg, transparent, #03e9f4);
+
+
+
+    animation-delay: .75s
+}
