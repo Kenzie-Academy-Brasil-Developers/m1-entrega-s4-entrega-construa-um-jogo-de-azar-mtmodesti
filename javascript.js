@@ -34,10 +34,8 @@ let x = []     //  Criando array vazia para receber as palavras
   }                                
   }
 
-
-
 //inserindo primeira palavra
-
+function addWords(){
 let linhaPalavraUm = Math.random() * (11 - 1) + 1                  
 let colunaPalavraUm = Math.random() * (10 - 0) + 1
 
@@ -118,5 +116,67 @@ if (colunaPalavraTres + randomWords[2].length > 10){
 for (let i = 0; i < randomWords[2].length; i++){
   x[linhaPalavraTres][colunaPalavraTres+i] = randomWords[2][i]
 }
+//COLOCAR LETRAS ALEATORIAS NOS ESPAÇOS VAZIOS
+  return preencher(x)
+}
 
-console.table(x)
+function preencher(arr){
+  let letras = randomLetters(100)
+  for(let linha = 1; linha <= 10; linha++) {
+    for(let coluna = 0; coluna < 10; coluna++){
+  let indiceLetra = Math.random() * (100 - 1) + 1
+    arr[linha][coluna] = letras[Math.floor(indiceLetra)]
+    }
+  }
+  return arr
+ //console.table(arr)
+}
+//EVENTOS DOM 
+const body = document.getElementById('body')
+
+body.addEventListener('click', choicedWord)
+
+function choicedWord(event){
+  let escolhido = event.target
+  for(let i = 1; i <= 3; i++){
+  let palavra = "palavra" + i    //se não der certo, tentar converte o I para string com o to string
+  if (escolhido.className === palavra){
+    let chance = document.getElementsByClassName(palavra)
+    for(let i = 0; i < chance.length; i++){
+      chance[i].className.add = "escolhido"
+    }
+  }
+}
+}
+
+
+
+function load(){
+  const tabela = document.getElementById("tabela")
+  const section = document.createElement('section')
+  body.appendChild(section)
+  addWords()
+  /*for(let i = 1; i <= 100; i++){
+    let x = 'tabela' + i
+    const tabela = document.createElement('div')
+    tabela.setAttribute('linha', i)
+    section.appendChild(tabela)
+    console.log(x)*/
+  //}
+  for(let linha = 1; linha <= 10; linha++){
+    for(let coluna = 0; coluna < 10; coluna++) {
+      const tabela = document.createElement('table')
+      tabela.setAttribute('linha', linha)
+      tabela.setAttribute('coluna', coluna)
+      section.appendChild(tabela)
+      console.log(coluna)
+      tabela.innerText = x[linha][coluna]
+    }
+  }
+}
+
+
+
+
+
+  
