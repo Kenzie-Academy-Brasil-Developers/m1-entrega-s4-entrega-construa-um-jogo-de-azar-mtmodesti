@@ -171,8 +171,7 @@ function load(){
   for(let linha = 1; linha <= 10; linha++){
     for(let coluna = 0; coluna < 10; coluna++) {
       const tabela = document.createElement('table')
-      tabela.setAttribute('linha', linha)
-      tabela.setAttribute('coluna', coluna)
+      tabela.setAttribute('letra', linha*coluna)
       section.appendChild(tabela)
       tabela.innerText = x[linha][coluna]
     }
@@ -181,7 +180,7 @@ function load(){
 
 body.addEventListener('click', checkWin)
 
-let palavra = ''
+let palavra = []
 let palavrasEncontradas = 0
 
 //VER O VENCEDOR
@@ -191,16 +190,29 @@ function checkWin(event) {
   const letra = document.getElementsByTagName('table')
 
   if(target.tagName === 'TABLE'){
-    let escolha = target.innerText
-    target.classList.add('escolhida')
-    palavra += escolha
-    console.log(palavra)
+    target.classList.toggle('escolhida')
+
+    let escolhidos = document.getElementsByClassName('escolhida')
+    console.log(escolhidos)
+    for(let i = 0; i < escolhidos.length; i++){
+      palavra[i] = escolhidos[i].innerText    
+    }
+    //console.log(palavra)
+    let palavraJoin = palavra.join('')
+   // console.log(palavraJoin)
+
+
+    //palavra += escolha
+    //console.log(palavra)
     for(let i = 0; i < crossWords.length; i++) {
       if(anagram(palavra, crossWords[i]) == true){
         let pao = document.getElementsByClassName('escolhida')
         alert('Palavra encontrada')
         palavrasEncontradas += 1
         console.log(palavrasEncontradas)
+        palavra = ''
+      }
+      if(palavra.length > 9){
         palavra = ''
       }
     }
@@ -212,3 +224,209 @@ function checkWin(event) {
   }
 }
 
+body.addEventListener('click', letraErrada)
+/*function letraErrada(event) {
+  let target = event.target;
+  console.log(target)
+  const letraErrada = document.getElementsByClassName('escolhida')
+  for(let i = 0; i < letraErrada.length; i++){
+    if(target.className === 'escolhida'){
+      letraErrada[i].classList.remove('escolhida')
+    }
+  }
+}*/
+
+function anagram(s, t) {
+  let strS = {}
+  if (s.length !== t.length) return false
+  for (let char of s){
+    strS[char] = (strS[char] || 0) + 1
+  }
+  for (let char of t){
+    if (!strS[char]) return false
+    strS[char] --
+  }
+  return true
+}
+
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+let cardPedra = document.getElementsByClassName("cardPedra")
+let cardPapel = document.getElementsByClassName("cardPapel")
+let cardTesoura = document.getElementsByClassName("cardTesoura")
+let player = 0
+
+//Sorteando o valor da máquina
+
+botao[1].addEventListener('click',addElements)
+
+function addElements(event) {
+  let target = event.target
+
+  main.style.display = 'none'
+
+  let header = document.createElement('header')
+  header.id = 'menulateral'
+
+  let button1 = document.createElement('button')
+  button1.id = 'buttonMusic'
+  button1.classList.add('button')
+  button1.innerText = 'Play audio'
+
+  let button2 = document.createElement('button')
+  button2.id = 'pauseMusic'
+  button2.classList.add('button')
+  button2.innerText = 'Pause music'
+
+  let button3 = document.createElement('button')
+  button3.id = 'reload'
+  button3.classList.add('button')
+  button3.innerText = 'Retornar a página inicial'
+
+  let div1 = document.createElement('div')
+  div1.classList.add('cardPedra')
+  let primeiroH1 = document.createElement('h1')
+  primeiroH1.innerText = 'Escolha 1'
+  let p1 = document.createElement('p')
+  p1.innerText = 'Pedra'
+
+  let div2 = document.createElement('div')
+  div2.classList.add('cardPapel')
+  let segundaH1 = document.createElement('h1')
+  segundaH1.innerText =  'Escolha 2'
+  let p2 = document.createElement('p')
+  p2.innerText = 'Papel'
+
+  let div3 = document.createElement('div')
+  div3.classList.add('cardTesoura')
+  let terceiraH1 = document.createElement('h1')
+  terceiraH1.innerText = 'Escolha 3'
+  let p3 = document.createElement('p')
+  p3.innerText = 'Tesoura'
+
+  //APPENDCHILD
+
+  header.appendChild(button1)
+  header.appendChild(button2)
+  header.appendChild(button3)
+  body.appendChild(header)
+
+  div1.appendChild(primeiroH1)
+  div1.appendChild(p1)
+  body.appendChild(div1)
+
+  div2.appendChild(segundaH1)
+  div2.appendChild(p2)
+  body.appendChild(div2)
+
+  div3.appendChild(terceiraH1)
+  div3.appendChild(p3)
+  body.appendChild(div3)
+}
+
+function machineValue(){
+let machine = Math.random() * (4 - 1) + 1
+machine = Math.trunc(machine)
+if (machine === 1){
+  machine = "Pedra"
+}
+if (machine === 2){
+  machine = "Papel"
+}
+if (machine === 3){
+  machine = "Tesoura"
+}
+console.log(machine)
+return machine
+}
+//Escolhendo o valor do player
+
+let pedra = document.getElementsByClassName('cardPedra')
+let papel = document.getElementsByClassName('cardPapel')
+let tesoura = document.getElementsByClassName('cardTesoura')
+
+//VOLTAR A PAGINA INICIAL
+
+body.addEventListener('click', reload)
+function reload(event) {
+  let button = document.getElementById('reload')
+  let target =  event.target
+
+
+  if(button === target){
+    location.reload()
+  }
+}
+
+//PEDRA
+function pedraEscolher (event) {
+  let target = event.target;
+  if(target.className == 'cardPedra'){
+    alert("Você escolheu pedra")
+    player.id = "pedra"
+    player = "Pedra"
+    let machine = machineValue()
+    alert(`A máquina escolheu ${machine}`)
+    whoWins(player, machine)
+  }
+}
+body.addEventListener('click', pedraEscolher)
+
+//PAPEL
+function papelEscolher(event) {
+  let target = event.target;
+  if(target.className == 'cardPapel'){
+    alert("Você escolheu pedra")
+    player.id = "pedra"
+    player = "Pedra"
+    let machine = machineValue()
+    alert(`A máquina escolheu ${machine}`)
+    whoWins(player, machine)
+  }
+}
+body.addEventListener('click', papelEscolher)
+
+//TESOURA
+function tesouraEscolher(event) {
+  let target = event.target;
+  if(target.className == 'cardTesoura'){
+    alert("Você escolheu tesoura")
+    player.id = "tesoura"
+    player = "Tesoura"
+    let machine = machineValue()
+    alert(`A máquina escolheu ${machine}`)
+    whoWins(player, machine)
+  }
+}
+
+body.addEventListener('click', tesouraEscolher)
+
+
+function whoWins(player, machine){
+if ((player === "Pedra" && machine === "Tesoura") ||
+    (player === "Papel" && machine === "Pedra") ||
+    (player === "Tesoura" && machine === "Papel")){
+      alert("Player wins!")
+    } 
+if ((machine === "Pedra" && player === "Tesoura") ||
+   (machine === "Papel" && player === "Pedra") ||
+   (machine === "Tesoura" && player === "Papel")){
+     alert("Você perdeu!")
+   } 
+if (player === machine){
+    alert("Empate")
+  }
+}
+const button = document.querySelector('button')
+button.addEventListener("click",function(){
+  const audio = document.querySelector('audio')
+  audio.volume = 0.02
+  audio.play()
+  button.style.backgroundColor = "#CCFF33"
+})
+let pauseMusic = document.getElementById("pauseMusic")
+pauseMusic.addEventListener("click",function(){
+  const audio = document.querySelector('audio')
+  audio.pause()
+  pauseMusic.style.backgroundColor = "#CCFF33"
+})
