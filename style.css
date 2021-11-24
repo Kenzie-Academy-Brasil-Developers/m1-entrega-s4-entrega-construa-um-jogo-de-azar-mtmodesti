@@ -210,3 +210,11 @@ cursor: pointer;
 
   box-shadow: 18px -19px 0 0 rgb(77,77,255), 25px -30px 0 0 rgb(77,77,255), 40px -45px 0 0 rgb(77,77,255), 58px -57px 0 0 rgb(77,77,255), 68px -73px 0 0 rgb(77,77,255), 85px -93px 0 0 rgb(77,77,255), 101px -107px 0 0 rgb(77,77,255), 112px -115px 0 0 rgb(77,77,255), 135px -135px 0 0 rgb(77,77,255), 155px -160px 0 0 rgb(77,77,255), 170px -165px 0 0 rgb(77,77,255), 180px -178px 0 0 rgb(77,77,255), 195px -195px 0 0 rgb(77,77,255);
 }
+
+.palavraCerta {
+    opacity: 0%;
+}
+
+.palavraCerta:hover {
+    cursor:default ;
+}

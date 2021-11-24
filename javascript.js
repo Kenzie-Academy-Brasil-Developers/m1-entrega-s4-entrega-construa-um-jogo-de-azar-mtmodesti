@@ -171,7 +171,7 @@ function load(){
   for(let linha = 1; linha <= 10; linha++){
     for(let coluna = 0; coluna < 10; coluna++) {
       const tabela = document.createElement('table')
-      tabela.setAttribute('letra', linha*coluna)
+      //tabela.setAttribute('id', 'letra')
       section.appendChild(tabela)
       tabela.innerText = x[linha][coluna]
     }
@@ -180,61 +180,49 @@ function load(){
 
 body.addEventListener('click', checkWin)
 
-let palavra = []
-let palavrasEncontradas = 0
 
 //VER O VENCEDOR
+let palavrasEncontradas = 0
+//NAO MEXER 
 function checkWin(event) {
   const crossWords = ["LASER","NEON","SABRE","PORTAL","ROBÔ","TECH","FUTURO","ORIGEM","FICÇÃO","ESPAÇO","ALIEN","FOGUETE","PROPULSOR","ASTRO","MATRIX","MÁQUINA","TEMPO","AMANHÃ","SCIFI","DESTINO"]
   let target = event.target
   const letra = document.getElementsByTagName('table')
 
-  if(target.tagName === 'TABLE'){
+  let palavraEscolhida = ''
+
+  if(target.tagName === 'TABLE' ){
     target.classList.toggle('escolhida')
 
     let escolhidos = document.getElementsByClassName('escolhida')
-    console.log(escolhidos)
     for(let i = 0; i < escolhidos.length; i++){
-      palavra[i] = escolhidos[i].innerText    
+      palavraEscolhida += escolhidos[i].innerText
     }
-    //console.log(palavra)
-    let palavraJoin = palavra.join('')
-   // console.log(palavraJoin)
-
-
-    //palavra += escolha
-    //console.log(palavra)
+    
+   
     for(let i = 0; i < crossWords.length; i++) {
-      if(anagram(palavra, crossWords[i]) == true){
-        let pao = document.getElementsByClassName('escolhida')
+      if(anagram(palavraEscolhida, crossWords[i]) == true){
+        console.log(palavraEscolhida.length)
+        for(let indice = 0; indice < palavraEscolhida.length; indice++){
+          console.log(indice)
+          console.log(escolhidos[indice])
+          escolhidos[0].className = 'palavraCerta'
+        }
         alert('Palavra encontrada')
         palavrasEncontradas += 1
         console.log(palavrasEncontradas)
-        palavra = ''
-      }
-      if(palavra.length > 9){
-        palavra = ''
+        console.log(palavraEscolhida)
       }
     }
   }
   if(palavrasEncontradas === 3){
     alert('Parabéns, você ganhou!')
-    alert('A página sera recarregada, obrigado por jogar')
+    alert('Obrigado por jogar')
     location.reload()
   }
 }
 
-body.addEventListener('click', letraErrada)
-/*function letraErrada(event) {
-  let target = event.target;
-  console.log(target)
-  const letraErrada = document.getElementsByClassName('escolhida')
-  for(let i = 0; i < letraErrada.length; i++){
-    if(target.className === 'escolhida'){
-      letraErrada[i].classList.remove('escolhida')
-    }
-  }
-}*/
+//NAO MEXER
 
 function anagram(s, t) {
   let strS = {}
