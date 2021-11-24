@@ -156,31 +156,16 @@ const main = document.getElementById('main')
 botao[0].addEventListener('click', load)
 
 function load(){
+  //RETIRAR BOTÕES
   main.style.display = 'none'
-  const header = document.createElement('header')
-  const p = document.createElement('p')
-  p.id = 'p'
-  header.appendChild(p)
-  body.appendChild(header)
 
-
-  const tabela = document.getElementById("tabela")
+  //CRIAR ELEMENTOS
+  const div = document.getElementById('div')
   const section = document.createElement('section')
   body.appendChild(section)
-  //const div = document.createElement('div')
-  //div.classList.add('div2')
-  //body.appendChild(div)
+
+  //INSERIR LETRAS
   addWords()
-
-
-
-  /*for(let i = 1; i <= 100; i++){
-    let x = 'tabela' + i
-    const tabela = document.createElement('div')
-    tabela.setAttribute('linha', i)
-    section.appendChild(tabela)
-    console.log(x)*/
-  //}
   for(let linha = 1; linha <= 10; linha++){
     for(let coluna = 0; coluna < 10; coluna++) {
       const tabela = document.createElement('table')
@@ -194,38 +179,55 @@ function load(){
 
 body.addEventListener('click', checkWin)
 
-let teste = ''
+let palavra = ''
 let palavrasEncontradas = 0
 
 const p = document.getElementById('p')
-p.innerText = 'Palavras encontradas: '
+p.innerText = 
+'Palavras encontradas: '
 
+
+//VER O VENCEDOR
 function checkWin(event) {
   const crossWords = ["LASER","NEON","SABRE","PORTAL","ROBÔ","TECH","FUTURO","ORIGEM","FICÇÃO","ESPAÇO","ALIEN","FOGUETE","PROPULSOR","ASTRO","MATRIX","MÁQUINA","TEMPO","AMANHÃ","SCIFI","DESTINO"]
   let target = event.target
-
   const letra = document.getElementsByTagName('table')
 
-
-
   if(target.tagName === 'TABLE'){
-    //for(let i = 0; i < crossWords.length; i++){
-    //  t
-    //}
-    let sla = target.innerText
-    teste += sla
-    console.log(teste)
+    let escolha = target.innerText
+    target.classList.add('escolhida')
+    palavra += escolha
+    console.log(palavra)
     for(let i = 0; i < crossWords.length; i++) {
-      if(teste == crossWords[i]){
-        console.log('eae bao')
+      if(anagram(palavra, crossWords[i]) == true){
+        let pao = document.getElementsByClassName('escolhida')
+        alert('Palavra encontrada')
         palavrasEncontradas += 1
-        teste = ''
+        console.log(palavrasEncontradas)
+        palavra = ''
       }
     }
+  }
+  if(palavrasEncontradas === 3){
+    alert('Parabéns, você ganhou!')
+    alert('A página sera recarregada, obrigado por jogar')
+    location.reload()
   }
 }
 
 
+function anagram(s, t) {
+  let strS = {}
+  if (s.length !== t.length) return false
+  for (let char of s){
+    strS[char] = (strS[char] || 0) + 1
+  }
+  for (let char of t){
+    if (!strS[char]) return false
+    strS[char] --
+  }
+  return true
+}
 
 
 
