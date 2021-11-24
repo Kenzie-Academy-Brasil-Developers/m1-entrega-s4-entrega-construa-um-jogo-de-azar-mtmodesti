@@ -212,16 +212,3 @@ function checkWin(event) {
   }
 }
 
-
-function anagram(s, t) {
-  let strS = {}
-  if (s.length !== t.length) return false
-  for (let char of s){
-    strS[char] = (strS[char] || 0) + 1
-  }
-  for (let char of t){
-    if (!strS[char]) return false
-    strS[char] --
-  }
-  return true
-}
