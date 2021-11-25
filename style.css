@@ -204,6 +204,7 @@ button:hover{
     
     width: 10vw;
     height: 10vh;
+    margin: 2em;
     background: rgb(77,77,255);
     position: relative;
     display: inline-block;
@@ -280,23 +281,27 @@ color: coral;
     display: none;
 }
 
-
+#fundoPreto {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+}
 
 #dicasPalavras{
-    display: none;
-    width: 300px;
+    z-index: 9999;
+    width: 500px;
     height: 100px;
     color: white;
     background-color: purple;
-    flex-wrap: wrap;
-    word-wrap: break-word;
-    position: absolute;
+    position: fixed;
     text-align: center;
-    line-height: 20px;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 10px 10px 10px 10px black;
-    
+    line-height: 2;
+    letter-spacing: 1px;
+    font-weight: 900;
+    border: white solid 1px;
+    box-shadow: 1px 4px 11px 9px black;
+    font-size: 17px;    
 }
  
 
@@ -325,14 +330,15 @@ color: coral;
 }
 
 #reiniciar{
-    position: absolute;
     font-family: 'Share Tech Mono';
-    top: 50%;
-    right: 0%;
     background: purple;
     color: white;
     font-size: 15px;
-    
+    position: absolute;
+    bottom: 10%;
+    width: 200px;
+    font-size: 25px;
+    letter-spacing: 1px;
 }
 
 #ola{

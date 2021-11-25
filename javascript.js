@@ -212,46 +212,17 @@ function load(){
   modals("Encontre 3 palavras que estão em linhas horizontais diferente. Basta clicar em todas as letras. Você tem 45 segundos. Boa Sorte!")
 
   function makeAlert(){ 
-    alert("Seu tempo acabou, a página será reiniciada. Boa sorte na próxima! =)");
-    location.reload()
 };
 
 setInterval(makeAlert, 60000);
 
-
-
-
-
-
-
-
-
-/* Inserindo botão de reload */
-
-  let restart = document.createElement('button')
-  restart.innerHTML = "Tela Inicial"
-  restart.id = "reiniciar"
-  body.appendChild(restart)
-  document.getElementById("reiniciar").addEventListener("click", function(){
-    location.reload()
-  })
 
   let dicasPalavras = document.createElement('button')
   dicasPalavras.innerHTML = "Dicas"
   dicasPalavras.id = "botaoDicas"
   //body.appendChild(dicasPalavras)
   dicasPalavras.addEventListener('click', function(){
-    /* let modal = document.createElement('div')
-    modal.id = "dicasPalavras"
-    modal.innerHTML = "Você precisará encontrar 3 palavras inseridas horizontalmente no diagrama. Cada palavra encontra-se em uma linha diferente. Clique sobre todas as letras para selecioná-la, em qualquer ordem."
-    modal.style.display = 'block'
-    body.appendChild(modal)
-    let exitDicas = document.getElementById('dicasPalavras')
-    exitDicas.addEventListener('click',function(){
-      modal.style.display = 'none'
-    })
-  
-   */
+
   modals("Você precisará encontrar 3 palavras inseridas horizontalmente no diagrama")
   })
 
@@ -271,20 +242,6 @@ setInterval(makeAlert, 60000);
 }
 
 body.addEventListener('click', checkWin)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //VER O VENCEDOR
@@ -360,16 +317,27 @@ let player = 0
 
 botao[1].addEventListener('click',addElements)
 
+function reload(event) {
+  let target = event.target
+  if(target.id == 'reiniciar'){
+    location.reload()
+  }
+}
+body.addEventListener('click', reload)
+
 function addElements(event) {
   let target = event.target
+
+  /* Inserindo botão de reload */
+
+  let retornar = document.createElement('button')
+  retornar.innerHTML = "Tela Inicial"
+  retornar.id = "reiniciar"
+  body.appendChild(retornar)
 
   main.style.display = 'none'
   let exitH1 = document.getElementById('ola')
   exitH1.remove()
-
-  let header = document.createElement('header')
-  header.id = 'menulateral'
-
 
   let button1 = document.createElement('button')
   button1.id = 'buttonMusic'
@@ -463,16 +431,7 @@ let tesoura = document.getElementsByClassName('cardTesoura')
 
 //VOLTAR A PAGINA INICIAL
 
-body.addEventListener('click', reload)
-function reload(event) {
-  let button = document.getElementById('reload')
-  let target =  event.target
 
-
-  if(button === target){
-    location.reload()
-  }
-}
 
 //PEDRA
 function pedraEscolher (event) {
@@ -557,25 +516,25 @@ if (player === machine){
 
 }
 
-/*  */
+//CRIAR MODAL
 function modals(str){
-let modal = document.createElement('div')
-modal.id = 'dicasPalavras'
-modal.innerHTML = str
-modal.style.display = 'flex'
-body.appendChild(modal)
-
-
+  let modal = document.createElement('div')
+  let fundoPreto = document.createElement('div')
+  modal.id = 'dicasPalavras'
+  fundoPreto.id = 'fundoPreto'
+  modal.innerText = str
+  body.appendChild(modal)
+  body.append(fundoPreto)
 }
 
-function exitModal(evt){
-  let target =  evt.target
+//SAIR DO MODAL
+function exitModal(event){
+  let target =  event.target
   let exit = document.getElementById("dicasPalavras")
+  let tirarFundoPreto = document.getElementById('fundoPreto')
   if (exit === target){
     exit.style.display = 'none'
-    
+    tirarFundoPreto.style.display = 'none'
   }
-
 }
-
 body.addEventListener("click", exitModal)
