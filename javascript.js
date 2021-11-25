@@ -1,3 +1,5 @@
+
+
 //Array que receberá as palavras
 const randomWords = []
 //Função para inserir as string na array
@@ -25,6 +27,8 @@ function randomLetters(n) {
 }
 
 
+
+
 let x = []     //  Criando array vazia para receber as palavras
 
   for (let linha = 1; linha <= 10; linha++){   
@@ -38,7 +42,6 @@ let x = []     //  Criando array vazia para receber as palavras
 function addWords(){
 let linhaPalavraUm = Math.random() * (11 - 1) + 1                  
 let colunaPalavraUm = Math.random() * (10 - 0) + 1
-
 
 
 linhaPalavraUm = Math.trunc(linhaPalavraUm)
@@ -120,6 +123,7 @@ for (let i = 0; i < randomWords[2].length; i++){
   return preencher(x)
 }
 
+
 function preencher(arr){
   let letras = randomLetters(100)
   for(let linha = 1; linha <= 10; linha++) {
@@ -134,6 +138,14 @@ function preencher(arr){
 }
 //EVENTOS DOM 
 const body = document.getElementById('body')
+
+
+
+
+
+
+
+
 
 body.addEventListener('click', choicedWord)
 
@@ -152,10 +164,38 @@ function choicedWord(event){
 
 
 
+let music = document.createElement('button')
+music.id = 'botãoMusical'
+music.innerText = "Play Music"
+body.appendChild(music)
+music.addEventListener('click',function(){
+  let audio = document.getElementById('som')
+  audio.play()
+})
+
+let stopMusic = document.createElement('button')
+stopMusic.id = "stopMusic"
+stopMusic.innerHTML = "Stop Music"
+body.appendChild(stopMusic)
+
+stopMusic.addEventListener("click", function(){
+  let audio = document.getElementById('som')
+  audio.pause()
+})
+
+
+
+
 const botao = document.getElementsByClassName('jogo')
 const main = document.getElementById('main')
 
+
+
 botao[0].addEventListener('click', load)
+
+
+
+
 
 function load(){
   //RETIRAR BOTÕES
@@ -165,6 +205,23 @@ function load(){
   const div = document.getElementById('div')
   const section = document.createElement('section')
   body.appendChild(section)
+
+alert("Você tem 30 segundos para encontrar as palavras")
+alert("Caso contrário, a página será reiniciada. Boa sorte")
+
+
+  function makeAlert(){ 
+    alert("Seu tempo acabou, a página será reiniciada. Boa sorte na próxima! =)!");
+    location.reload()
+};
+
+setInterval(makeAlert, 30000);
+
+
+
+
+
+
 
 
 
@@ -177,10 +234,24 @@ function load(){
   document.getElementById("reiniciar").addEventListener("click", function(){
     location.reload()
   })
+
+  let dicasPalavras = document.createElement('button')
+  dicasPalavras.innerHTML = "Dicas"
+  dicasPalavras.id = "botaoDicas"
+  body.appendChild(dicasPalavras)
+  dicasPalavras.addEventListener('click', function(){
+    let modal = document.createElement('div')
+    modal.id = "dicasPalavras"
+    modal.innerHTML = "Você precisará encontrar 3 palavras inseridas horizontalmente no diagrama. Cada palavra encontra-se em uma linha diferente. Clique sobre todas as letras para selecioná-la, em qualquer ordem."
+    modal.style.display = 'block'
+    body.appendChild(modal)
+    let exitDicas = document.getElementById('dicasPalavras')
+    exitDicas.addEventListener('click',function(){
+      modal.style.display = 'none'
+    })
+  })
+
   
-
-
-
 
 
   //INSERIR LETRAS
@@ -196,6 +267,20 @@ function load(){
 }
 
 body.addEventListener('click', checkWin)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //VER O VENCEDOR
@@ -225,16 +310,20 @@ function checkWin(event) {
           console.log(escolhidos[indice])
           escolhidos[0].className = 'palavraCerta'
         }
-        alert('Palavra encontrada')
+        
+        
+
+
         palavrasEncontradas += 1
-        console.log(palavrasEncontradas)
-        console.log(palavraEscolhida)
+
+        alert("Palavra encontrada")
+
       }
     }
   }
   if(palavrasEncontradas === 3){
-    alert('Parabéns, você ganhou!')
-    alert('Obrigado por jogar')
+    alert("Você venceu o jogo")
+    alert("A página será reiniciada")
     location.reload()
   }
 }
@@ -253,43 +342,6 @@ function anagram(s, t) {
   }
   return true
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -367,6 +419,22 @@ function addElements(event) {
   body.appendChild(restart)
   document.getElementById("reiniciar").addEventListener("click", function(){
     location.reload()
+  })
+
+  let dicas = document.createElement('button')
+  dicas.innerHTML = 'Dicas'
+  dicas.id = 'dicas'
+  body.appendChild(dicas)
+  dicas.addEventListener('click', function(){
+    let modal = document.createElement('div')
+    modal.id = "dicasPalavras"
+    modal.innerHTML = "Clique no botão para escolher a sua jogada. O computador irá gerar automaticamente a dele. Pedra ganha de tesoura, tesoura ganha de papel e papel ganha de pedra. Boa sorte"
+    modal.style.display = 'block'
+    body.appendChild(modal)
+    let exitDicas = document.getElementById('dicasPalavras')
+    exitDicas.addEventListener('click',function(){
+      modal.style.display = 'none'
+    })
   })
 
 
@@ -469,3 +537,40 @@ if (player === machine){
     alert("Empate")
   }
 }
+
+
+function modals(str){
+let modal = document.createElement('div')
+modal.id = 'dicasPalavras'
+modal.innerHTML = str
+modal.style.display = 'block'
+body.appendChild(modal)
+let exitDicas = document.getElementById('dicasPalavras')
+exitDicas.addEventListener('click',function(){
+  modal.remove()
+})
+
+}
+
+
+
+  /* 
+  
+  let dicasPalavras = document.createElement('button')******
+  dicasPalavras.innerHTML = "Dicas"******
+  dicasPalavras.id = "botaoDicas"*****
+  body.appendChild(dicasPalavras)******
+  dicasPalavras.addEventListener('click', function(){
+    let modal = document.createElement('div')
+    modal.id = "dicasPalavras"
+    modal.innerHTML = "Você precisará encontrar 3 palavras inseridas horizontalmente no diagrama. Cada palavra encontra-se em uma linha diferente. Clique sobre todas as letras para selecioná-la, em qualquer ordem."
+    modal.style.display = 'block'
+    body.appendChild(modal)
+    let exitDicas = document.getElementById('dicasPalavras')
+    exitDicas.addEventListener('click',function(){
+      modal.style.display = 'none'
+    })
+  })
+  
+  
+  */

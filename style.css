@@ -218,3 +218,88 @@ button:hover{
     cursor:default ;
 }
 
+
+.modalcontainer{
+
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,.5);
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal{
+    background-color: white;
+    width: 300px;
+    padding: 40px;
+    border: 10px solid rgb(77,77,255);
+}
+
+.btn{
+    padding: 10px;
+    background-color: purple;
+    display: inline-block;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: (-50%, -50%);
+    cursor: pointer;
+}
+
+.btn:hover{
+background: blueviolet;
+color: coral;
+}
+
+
+
+.modal{
+    width: 100px;
+    height: 50px;
+    background: brown;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    transform: (-50%, -50%);
+    display: none;
+    
+}
+
+#fechar{
+    display: none;
+}
+
+#dicasPalavras{
+    display: flex;
+    width: 300px;
+    height: 100px;
+    color: white;
+    background-color: purple;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    position: absolute;
+    display: none;
+}
+
+#botãoMusical{
+    position: fixed;
+  right: 0;
+  top: 10%;
+  width: 5em;
+  margin-top: -2.5em;
+}
+
+#stopMusic{
+    position: fixed;
+  right: 0;
+  top: 30%;
+  width: 5em;
+  margin-top: -2.5em;
+
+}
