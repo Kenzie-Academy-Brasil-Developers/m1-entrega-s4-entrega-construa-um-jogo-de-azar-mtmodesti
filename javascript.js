@@ -209,7 +209,7 @@ function load(){
   body.appendChild(section)
 
 
-  modals("Encontre 3 palavras que estão em linhas horizontais difrente. Basta clicar em todas as letras. Você tem 45 segundos. Boa Sorte!")
+  modals("Encontre 3 palavras que estão em linhas horizontais diferente. Basta clicar em todas as letras. Você tem 45 segundos. Boa Sorte!")
 
   function makeAlert(){ 
     alert("Seu tempo acabou, a página será reiniciada. Boa sorte na próxima! =)");
@@ -360,7 +360,6 @@ let player = 0
 
 botao[1].addEventListener('click',addElements)
 
-
 function addElements(event) {
   let target = event.target
 
@@ -382,17 +381,13 @@ function addElements(event) {
   button2.classList.add('button')
   button2.innerText = 'Pause music'
 
-  let button3 = document.createElement('button')
-  button3.id = 'reload'
-  button3.classList.add('button')
-  button3.innerText = 'Retornar a página inicial'
-
   let div1 = document.createElement('div')
   div1.classList.add('cardPedra')
   let primeiroH1 = document.createElement('h1')
   primeiroH1.innerText = 'Escolha 1'
   let p1 = document.createElement('p')
   p1.innerText = 'Pedra'
+  p1.className = 'textoPedra'
 
   let div2 = document.createElement('div')
   div2.classList.add('cardPapel')
@@ -400,6 +395,7 @@ function addElements(event) {
   segundaH1.innerText =  'Escolha 2'
   let p2 = document.createElement('p')
   p2.innerText = 'Papel'
+  p2.className = 'textoPapel'
 
   let div3 = document.createElement('div')
   div3.classList.add('cardTesoura')
@@ -407,6 +403,7 @@ function addElements(event) {
   terceiraH1.innerText = 'Escolha 3'
   let p3 = document.createElement('p')
   p3.innerText = 'Tesoura'
+  p3.className = 'textoTesoura'
 
   div1.appendChild(primeiroH1)
   div1.appendChild(p1)
@@ -480,7 +477,7 @@ function reload(event) {
 //PEDRA
 function pedraEscolher (event) {
   let target = event.target;
-  if(target.className == 'cardPedra'){
+  if(target.className == 'cardPedra' || target.className == 'textoPedra'){
     alert("Você escolheu pedra")
     player.id = "pedra"
     player = "Pedra"
@@ -494,7 +491,7 @@ body.addEventListener('click', pedraEscolher)
 //PAPEL
 function papelEscolher(event) {
   let target = event.target;
-  if(target.className == 'cardPapel'){
+  if(target.className == 'cardPapel' || target.className == 'textoPapel'){
     alert("Você escolheu papel")
     player.id = "papel"
     player = "Papel"
@@ -508,7 +505,7 @@ body.addEventListener('click', papelEscolher)
 //TESOURA
 function tesouraEscolher(event) {
   let target = event.target;
-  if(target.className == 'cardTesoura'){
+  if(target.className == 'cardTesoura' || target.className == 'textoTesoura'){
     alert("Você escolheu tesoura")
     player.id = "tesoura"
     player = "Tesoura"
@@ -520,21 +517,44 @@ function tesouraEscolher(event) {
 
 body.addEventListener('click', tesouraEscolher)
 
-
+let playerWins = 0
+let empate = 0
+let machineWins = 0
 function whoWins(player, machine){
 if ((player === "Pedra" && machine === "Tesoura") ||
     (player === "Papel" && machine === "Pedra") ||
     (player === "Tesoura" && machine === "Papel")){
-      alert("Player wins!")
+      alert("Você venceu!")
+      playerWins += 1
     } 
 if ((machine === "Pedra" && player === "Tesoura") ||
    (machine === "Papel" && player === "Pedra") ||
    (machine === "Tesoura" && player === "Papel")){
+     machineWins += 1
      alert("Você perdeu!")
    } 
 if (player === machine){
-    alert("Empate")
+    empate += 1
+    alert("Empate!")
   }
+
+  let divText = document.createElement('div')
+  divText.classList.add('placar')
+
+  let playerText = document.createElement('p')
+  let empateText = document.createElement('p')
+  let machineText = document.createElement('p')
+
+  playerText.innerText = 'Vitórias: ' + playerWins
+  empateText.innerText = 'Empates: ' + empate
+  machineText.innerText = 'Derrotas: ' + machineWins
+
+  divText.appendChild(playerText)
+  divText.appendChild(empateText)
+  divText.appendChild(machineText)
+
+  body.appendChild(divText)
+
 }
 
 /*  */

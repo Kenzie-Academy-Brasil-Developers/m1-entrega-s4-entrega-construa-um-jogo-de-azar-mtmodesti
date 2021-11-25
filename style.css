@@ -344,3 +344,13 @@ color: coral;
     font-family: 'Share Tech Mono';
     
 }
+
+.placar {
+    position: absolute;
+    left: 2%;
+    top: 5%;
+    color: white;
+    text-shadow: -2px 3px 1px black;
+    background: purple;
+    padding: 5px;
+}
