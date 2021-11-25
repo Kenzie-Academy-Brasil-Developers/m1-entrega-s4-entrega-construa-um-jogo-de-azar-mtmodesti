@@ -200,22 +200,23 @@ botao[0].addEventListener('click', load)
 function load(){
   //RETIRAR BOTÕES
   main.style.display = 'none'
+  let exitH1 = document.getElementById("ola")
+  exitH1.remove()
 
   //CRIAR ELEMENTOS
   const div = document.getElementById('div')
   const section = document.createElement('section')
   body.appendChild(section)
 
-alert("Você tem 30 segundos para encontrar as palavras")
-alert("Caso contrário, a página será reiniciada. Boa sorte")
 
+  modals("Encontre 3 palavras que estão em linhas horizontais difrente. Basta clicar em todas as letras. Você tem 45 segundos. Boa Sorte!")
 
   function makeAlert(){ 
-    alert("Seu tempo acabou, a página será reiniciada. Boa sorte na próxima! =)!");
+    alert("Seu tempo acabou, a página será reiniciada. Boa sorte na próxima! =)");
     location.reload()
 };
 
-setInterval(makeAlert, 30000);
+setInterval(makeAlert, 60000);
 
 
 
@@ -238,9 +239,9 @@ setInterval(makeAlert, 30000);
   let dicasPalavras = document.createElement('button')
   dicasPalavras.innerHTML = "Dicas"
   dicasPalavras.id = "botaoDicas"
-  body.appendChild(dicasPalavras)
+  //body.appendChild(dicasPalavras)
   dicasPalavras.addEventListener('click', function(){
-    let modal = document.createElement('div')
+    /* let modal = document.createElement('div')
     modal.id = "dicasPalavras"
     modal.innerHTML = "Você precisará encontrar 3 palavras inseridas horizontalmente no diagrama. Cada palavra encontra-se em uma linha diferente. Clique sobre todas as letras para selecioná-la, em qualquer ordem."
     modal.style.display = 'block'
@@ -249,6 +250,9 @@ setInterval(makeAlert, 30000);
     exitDicas.addEventListener('click',function(){
       modal.style.display = 'none'
     })
+  
+   */
+  modals("Você precisará encontrar 3 palavras inseridas horizontalmente no diagrama")
   })
 
   
@@ -356,10 +360,13 @@ let player = 0
 
 botao[1].addEventListener('click',addElements)
 
+
 function addElements(event) {
   let target = event.target
 
   main.style.display = 'none'
+  let exitH1 = document.getElementById('ola')
+  exitH1.remove()
 
   let header = document.createElement('header')
   header.id = 'menulateral'
@@ -424,18 +431,10 @@ function addElements(event) {
   let dicas = document.createElement('button')
   dicas.innerHTML = 'Dicas'
   dicas.id = 'dicas'
-  body.appendChild(dicas)
-  dicas.addEventListener('click', function(){
-    let modal = document.createElement('div')
-    modal.id = "dicasPalavras"
-    modal.innerHTML = "Clique no botão para escolher a sua jogada. O computador irá gerar automaticamente a dele. Pedra ganha de tesoura, tesoura ganha de papel e papel ganha de pedra. Boa sorte"
-    modal.style.display = 'block'
-    body.appendChild(modal)
-    let exitDicas = document.getElementById('dicasPalavras')
-    exitDicas.addEventListener('click',function(){
-      modal.style.display = 'none'
-    })
-  })
+  //body.appendChild(dicas)
+  
+    modals("Escolha sua jogada clicando em algum botão. O computador escolherá automaticamente. O resultado será anunciado no fim do clique")
+  
 
 
 
@@ -538,39 +537,25 @@ if (player === machine){
   }
 }
 
-
+/*  */
 function modals(str){
 let modal = document.createElement('div')
 modal.id = 'dicasPalavras'
 modal.innerHTML = str
-modal.style.display = 'block'
+modal.style.display = 'flex'
 body.appendChild(modal)
-let exitDicas = document.getElementById('dicasPalavras')
-exitDicas.addEventListener('click',function(){
-  modal.remove()
-})
+
 
 }
 
+function exitModal(evt){
+  let target =  evt.target
+  let exit = document.getElementById("dicasPalavras")
+  if (exit === target){
+    exit.style.display = 'none'
+    
+  }
 
+}
 
-  /* 
-  
-  let dicasPalavras = document.createElement('button')******
-  dicasPalavras.innerHTML = "Dicas"******
-  dicasPalavras.id = "botaoDicas"*****
-  body.appendChild(dicasPalavras)******
-  dicasPalavras.addEventListener('click', function(){
-    let modal = document.createElement('div')
-    modal.id = "dicasPalavras"
-    modal.innerHTML = "Você precisará encontrar 3 palavras inseridas horizontalmente no diagrama. Cada palavra encontra-se em uma linha diferente. Clique sobre todas as letras para selecioná-la, em qualquer ordem."
-    modal.style.display = 'block'
-    body.appendChild(modal)
-    let exitDicas = document.getElementById('dicasPalavras')
-    exitDicas.addEventListener('click',function(){
-      modal.style.display = 'none'
-    })
-  })
-  
-  
-  */
+body.addEventListener("click", exitModal)

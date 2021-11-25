@@ -1,8 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+
+
 html {
     background-image: url(./background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    font-family: 'Share Tech Mono';
     
 
 }
@@ -275,8 +280,10 @@ color: coral;
     display: none;
 }
 
+
+
 #dicasPalavras{
-    display: flex;
+    display: none;
     width: 300px;
     height: 100px;
     color: white;
@@ -284,8 +291,16 @@ color: coral;
     flex-wrap: wrap;
     word-wrap: break-word;
     position: absolute;
-    display: none;
+    text-align: center;
+    line-height: 20px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 10px 10px 10px 10px black;
+    
 }
+ 
+
+
 
 #botãoMusical{
     position: fixed;
@@ -293,6 +308,9 @@ color: coral;
   top: 10%;
   width: 5em;
   margin-top: -2.5em;
+  background-color: transparent;
+  color: greenyellow;
+  font-weight: 800;
 }
 
 #stopMusic{
@@ -301,5 +319,28 @@ color: coral;
   top: 30%;
   width: 5em;
   margin-top: -2.5em;
+  background-color: transparent;
+  color: greenyellow;
+  font-weight: 800;
+}
 
+#reiniciar{
+    position: absolute;
+    font-family: 'Share Tech Mono';
+    top: 50%;
+    right: 0%;
+    background: purple;
+    color: white;
+    font-size: 15px;
+    
+}
+
+#ola{
+    position: absolute;
+    top: 130px;
+    font-size: 50px;
+    color: white;
+    text-shadow: 10px 10px 10px  black;
+    font-family: 'Share Tech Mono';
+    
 }
