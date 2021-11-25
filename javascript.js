@@ -166,6 +166,23 @@ function load(){
   const section = document.createElement('section')
   body.appendChild(section)
 
+
+
+/* Inserindo botão de reload */
+
+  let restart = document.createElement('button')
+  restart.innerHTML = "Tela Inicial"
+  restart.id = "reiniciar"
+  body.appendChild(restart)
+  document.getElementById("reiniciar").addEventListener("click", function(){
+    location.reload()
+  })
+  
+
+
+
+
+
   //INSERIR LETRAS
   addWords()
   for(let linha = 1; linha <= 10; linha++){
@@ -237,6 +254,45 @@ function anagram(s, t) {
   return true
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 let cardPedra = document.getElementsByClassName("cardPedra")
@@ -255,6 +311,7 @@ function addElements(event) {
 
   let header = document.createElement('header')
   header.id = 'menulateral'
+
 
   let button1 = document.createElement('button')
   button1.id = 'buttonMusic'
@@ -292,13 +349,6 @@ function addElements(event) {
   let p3 = document.createElement('p')
   p3.innerText = 'Tesoura'
 
-  //APPENDCHILD
-
-  header.appendChild(button1)
-  header.appendChild(button2)
-  header.appendChild(button3)
-  body.appendChild(header)
-
   div1.appendChild(primeiroH1)
   div1.appendChild(p1)
   body.appendChild(div1)
@@ -310,6 +360,20 @@ function addElements(event) {
   div3.appendChild(terceiraH1)
   div3.appendChild(p3)
   body.appendChild(div3)
+
+  let restart = document.createElement('button')
+  restart.innerHTML = "Tela Inicial"
+  restart.id = "reiniciar"
+  body.appendChild(restart)
+  document.getElementById("reiniciar").addEventListener("click", function(){
+    location.reload()
+  })
+
+
+
+
+
+
 }
 
 function machineValue(){
@@ -364,9 +428,9 @@ body.addEventListener('click', pedraEscolher)
 function papelEscolher(event) {
   let target = event.target;
   if(target.className == 'cardPapel'){
-    alert("Você escolheu pedra")
-    player.id = "pedra"
-    player = "Pedra"
+    alert("Você escolheu papel")
+    player.id = "papel"
+    player = "Papel"
     let machine = machineValue()
     alert(`A máquina escolheu ${machine}`)
     whoWins(player, machine)
@@ -405,16 +469,3 @@ if (player === machine){
     alert("Empate")
   }
 }
-const button = document.querySelector('button')
-button.addEventListener("click",function(){
-  const audio = document.querySelector('audio')
-  audio.volume = 0.02
-  audio.play()
-  button.style.backgroundColor = "#CCFF33"
-})
-let pauseMusic = document.getElementById("pauseMusic")
-pauseMusic.addEventListener("click",function(){
-  const audio = document.querySelector('audio')
-  audio.pause()
-  pauseMusic.style.backgroundColor = "#CCFF33"
-})
