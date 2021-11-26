@@ -136,23 +136,14 @@ function preencher(arr){
     }
     return arr
 }
-//EVENTOS DOM 
+
 const body = document.getElementById('body')
-
-
-
-
-
-
-
-
-
 body.addEventListener('click', choicedWord)
 
 function choicedWord(event){
   let escolhido = event.target
   for(let i = 1; i <= 3; i++){
-  let palavra = "palavra" + i    //se não der certo, tentar converte o I para string com o to string
+  let palavra = "palavra" + i 
   if (escolhido.className === palavra){
     let chance = document.getElementsByClassName(palavra)
     for(let i = 0; i < chance.length; i++){
@@ -198,6 +189,9 @@ botao[0].addEventListener('click', load)
 
 
 function load(){
+  //MUDAR BACKGROUND IMAGE
+  let html = document.querySelector('html')
+  html.style.backgroundImage = 'url(./thumb-1920-596242.jpg)'
   //RETIRAR BOTÕES
   main.style.display = 'none'
   let exitH1 = document.getElementById("ola")
@@ -208,26 +202,8 @@ function load(){
   const section = document.createElement('section')
   body.appendChild(section)
 
-
-  modals("Encontre 3 palavras que estão em linhas horizontais diferente. Basta clicar em todas as letras. Você tem 45 segundos. Boa Sorte!")
-
-  function makeAlert(){ 
-};
-
-setInterval(makeAlert, 60000);
-
-
-  let dicasPalavras = document.createElement('button')
-  dicasPalavras.innerHTML = "Dicas"
-  dicasPalavras.id = "botaoDicas"
-  //body.appendChild(dicasPalavras)
-  dicasPalavras.addEventListener('click', function(){
-
-  modals("Você precisará encontrar 3 palavras inseridas horizontalmente no diagrama")
-  })
-
-  
-
+  //MODAL
+  modals("Encontre 3 palavras que estão em linhas horizontais diferente. Basta clicar em todas as letras. Você tem 30 segundos. Boa Sorte!", 'FECHAR', 'fecharModal')
 
   //INSERIR LETRAS
   addWords()
@@ -271,21 +247,20 @@ function checkWin(event) {
           console.log(escolhidos[indice])
           escolhidos[0].className = 'palavraCerta'
         }
-        
-        
-
-
         palavrasEncontradas += 1
-
-        alert("Palavra encontrada")
-
+        let header = document.createElement('header')
+        let p = document.createElement('p')
+        p.innerText = 'Palavras encontradas:' + palavrasEncontradas
+        header.appendChild(p)
+        body.appendChild(header)
       }
     }
   }
   if(palavrasEncontradas === 3){
-    alert("Você venceu o jogo")
-    alert("A página será reiniciada")
-    location.reload()
+    modals('Voce encontrou todas as palavras. Parabéns :D', '', '')
+    setInterval(restartPage, 5000)
+  }else{
+    setInterval(derrota, 45000)
   }
 }
 
@@ -306,8 +281,6 @@ function anagram(s, t) {
 
 
 
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
 let cardPedra = document.getElementsByClassName("cardPedra")
 let cardPapel = document.getElementsByClassName("cardPapel")
 let cardTesoura = document.getElementsByClassName("cardTesoura")
@@ -326,7 +299,13 @@ function reload(event) {
 body.addEventListener('click', reload)
 
 function addElements(event) {
+  //MUDAR BACKGROUND
+  let html = document.querySelector('html')
+  html.style.backgroundImage = 'url(./thumb-1920-596243.jpg)'
+  //
   let target = event.target
+
+  body.style.justifyContent = 'space-betwen'
 
   /* Inserindo botão de reload */
 
@@ -398,7 +377,7 @@ function addElements(event) {
   dicas.id = 'dicas'
   //body.appendChild(dicas)
   
-    modals("Escolha sua jogada clicando em algum botão. O computador escolherá automaticamente. O resultado será anunciado no fim do clique")
+    modals("Escolha sua jogada clicando em algum botão. O computador escolherá automaticamente. O resultado será anunciado no fim do clique", 'FECHAR', 'fecharModal')
   
 
 
@@ -517,24 +496,46 @@ if (player === machine){
 }
 
 //CRIAR MODAL
-function modals(str){
+function modals(str, spanText, spanId){
   let modal = document.createElement('div')
+  let modalText = document.createElement('p')
+  
   let fundoPreto = document.createElement('div')
+  let span = document.createElement('span')
+  span.id = spanId
+  span.innerText = spanText
+
   modal.id = 'dicasPalavras'
   fundoPreto.id = 'fundoPreto'
-  modal.innerText = str
+  modalText.innerText = str
+  
+  modal.appendChild(modalText)
+  modal.appendChild(span)
   body.appendChild(modal)
   body.append(fundoPreto)
 }
 
+//REINICIAR A PAGINA
+function restartPage() {
+  location.reload()
+}
+//TEMPO ACABOU 
+function derrota(){
+  modals('O tempo acabou. Quem sabe na próxima :(', '', '')
+  setInterval(restartPage, 5000)
+};
+//VOCE VENCEU
 //SAIR DO MODAL
 function exitModal(event){
   let target =  event.target
-  let exit = document.getElementById("dicasPalavras")
+  let exit = document.getElementById("fecharModal")
+  let modal = document.getElementById('dicasPalavras')
   let tirarFundoPreto = document.getElementById('fundoPreto')
   if (exit === target){
+    modal.style.display = 'none'
     exit.style.display = 'none'
     tirarFundoPreto.style.display = 'none'
   }
 }
 body.addEventListener("click", exitModal)
+

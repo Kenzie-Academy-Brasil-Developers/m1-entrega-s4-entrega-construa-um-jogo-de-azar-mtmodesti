@@ -290,21 +290,37 @@ color: coral;
 
 #dicasPalavras{
     z-index: 9999;
-    width: 500px;
-    height: 100px;
+    width: 600px;
+    height: auto;
+    padding: 10px;
     color: white;
     background-color: purple;
     position: fixed;
     text-align: center;
-    line-height: 2;
+    line-height: 1.3;
     letter-spacing: 1px;
     font-weight: 900;
     border: white solid 1px;
     box-shadow: 1px 4px 11px 9px black;
     font-size: 17px;    
 }
- 
 
+#fecharModal {
+    color: white;
+    background-color: black;
+    padding: 2px;
+    box-shadow: 0px 1px 1px 1.5px black;
+    border: 2px solid;
+}
+
+#dicasPalavras p {
+    margin-bottom: 20px;
+}
+
+#fecharModal:hover, #jogarNovamente:hover {
+    cursor: pointer;
+    background-color: steelblue;
+}
 
 
 #botãoMusical{
@@ -359,4 +375,19 @@ color: coral;
     text-shadow: -2px 3px 1px black;
     background: purple;
     padding: 5px;
+}
+
+header {
+    width: auto;
+    top: 13px;
+    position: absolute;
+    border: white solid 1px;
+}
+
+header p {
+    font-size: 20px;
+    color: white;
+    background-color: indigo;
+    padding: 10px;
+    letter-spacing: 2px;
 }
