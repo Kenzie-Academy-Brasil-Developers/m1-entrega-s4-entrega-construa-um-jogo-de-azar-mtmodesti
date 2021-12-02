@@ -4,8 +4,8 @@
 
 html {
     background-image: url(./background.jpg);
-    background-repeat: no-repeat;
     background-size: cover;
+    background-repeat: repeat;
     background-position: center center;
     font-family: 'Share Tech Mono';
     
@@ -390,4 +390,23 @@ header p {
     background-color: indigo;
     padding: 10px;
     letter-spacing: 2px;
+}
+
+@media screen and (max-width: 768px) {
+    #ola {
+        font-size: 25px;
+        top: 45%;
+    }
+    .main{
+        flex-direction: column;
+    }
+    section {
+        width: 300px;
+    }
+    table {
+        width: 30px;
+    }
+    #dicasPalavras{
+        width: 60vw;
+    }
 }
